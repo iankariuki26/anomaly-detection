@@ -16,7 +16,7 @@ logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler("anomaly_app.log"),
+        logging.FileHandler("/opt/anomaly-detection/anomaly_app.log"),
         logging.StreamHandler()
     ]
     
@@ -72,8 +72,12 @@ def process_file(bucket: str, key: str):
         # 6. Save updated baseline back to S3
         baseline_mgr.save(baseline)
 
+        #having the logger write to disk before uploading to s3
+        for handler in logger.handlers:
+            handler.flush()
+
         try:
-            s3.upload_file("anomaly_app.log", bucket, "logs/anomaly_app.log")
+            s3.upload_file("/opt/anomaly-detection/anomaly_app.log", bucket, "logs/anomaly_app.log")
             logger.info("Successfully synced log file to S3.")
         except Exception as e:
             logger.error(f"Failed to sync logs to S3: {e}")
