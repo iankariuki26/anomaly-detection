@@ -53,7 +53,7 @@ Resources:
     SNSTopic:
       Type: 'AWS::SNS::Topic'
       Properties:
-        TopicName: 'ds5220-dp-1'
+        TopicName: 'dp1-ds5022'
     
     # SNS Topic Policy which gives S3 has permission to send to SNS
     SNSTopicPolicy:
@@ -146,28 +146,30 @@ Resources:
             #!/bin/bash
             set -e
             
-            # 1. Update and Install Dependencies
+            # 1. System Setup
             apt-get update -y
             apt-get install -y git python3-pip python3-venv
 
-            # 2. Set Environment Variables (Persistently and for current session)
-            echo "BUCKET_NAME='${DataBucket}'" >> /etc/environment
-            export BUCKET_NAME='${DataBucket}'
-
-            # 3. clone and cd
+            # 2. Directory & Permissions
             mkdir -p /opt/anomaly-detection
-            git clone ${GitHubRepoUrl} /opt/anomaly-detection
+            chown ubuntu:ubuntu /opt/anomaly-detection
+            
+            # 3. Environment Variables
+            echo "BUCKET_NAME=${DataBucket}" >> /etc/environment
+            # Export for this session
+            export BUCKET_NAME=${DataBucket}
+
+            # 4. Clone and Build (as ubuntu user to avoid root locks)
+            sudo -u ubuntu -i bash <<EOF
             cd /opt/anomaly-detection
-
-            # 4. Setup Python Virtual Environment
+            git clone ${GitHubRepoUrl} .
             python3 -m venv venv
-            source venv/bin/activate
-            pip install --upgrade pip
-            pip install -r requirements.txt
-
-            # 5. Start FastAPI Service
-            # Running with nohup to ensure it stays up after script exits
-            nohup /opt/anomaly-detection/venv/bin/fastapi run app.py --port 8000 > /var/log/fastapi.log 2>&1 &    
+            ./venv/bin/pip install --upgrade pip
+            ./venv/bin/pip install -r requirements.txt
+            
+            # 5. Start Service (Redirecting to a file ubuntu can write to)
+            export BUCKET_NAME=${DataBucket}
+            nohup ./venv/bin/fastapi run app.py --port 8000 > anomaly_app.log 2>&1 & EOF
 
       #Elastic IP
     InstanceEIP:

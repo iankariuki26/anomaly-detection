@@ -11,7 +11,7 @@ from detector import AnomalyDetector
 
 import logging
 
-eastern_tz = ZoneInfo("America/New_York")
+EASTERN_TZ = ZoneInfo("America/New_York")
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
