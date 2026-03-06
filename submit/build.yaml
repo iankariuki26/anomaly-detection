@@ -1,1 +1,185 @@
 # cloudformation solution goes here
+
+
+AWSTemplateFormatVersion: 2010-09-09
+Description: 'DS5220 Data Project 1: Event-Driven Anomaly Detection Pipeline'
+
+
+Parameters:
+
+  MyIP:
+    Type: String
+    Description: 'your public IP address for SSH access (e.g., 1.2.3.4/32)'
+    Default: '0.0.0.0/0'
+
+  GitHubRepoUrl:
+    Type: String
+    Description: 'URL of your forked repository'
+    Default: 'https://github.com/iankariuki26/anomaly-detection.git'
+
+  InstanceType:
+    Description: The EC2 instance type
+    Type: String
+    Default: t3.micro
+  
+  KeyName:
+    Description: Name of an existing EC2 KeyPair to enable SSH access to the instance
+    Type: 'AWS::EC2::KeyPair::KeyName'
+
+  LatestAmiId:
+    Type: 'AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>'
+    Default: '/aws/service/canonical/ubuntu/server/24.04/stable/current/amd64/hvm/ebs-gp3/ami-id'
+    
+  
+Resources:
+    # this first portion is the S3 Bucket which depends on topic policy to prevent circular dependency errors
+    DataBucket:
+      Type: 'AWS::S3::Bucket'
+      DependsOn: [SNSTopicPolicy]
+      Properties:
+        NotificationConfiguration:
+          TopicConfigurations:
+            - Topic: !Ref SNSTopic
+              Event: 's3:ObjectCreated:*'
+              Filter:
+                S3Key:
+                  Rules:
+                    - Name: prefix
+                      Value: 'raw/'
+                    - Name: suffix
+                      Value: '.csv'
+
+    # SNS topic
+    SNSTopic:
+      Type: 'AWS::SNS::Topic'
+      Properties:
+        TopicName: 'ds5220-project1'
+    
+    # SNS Topic Policy which gives S3 has permission to send to SNS
+    SNSTopicPolicy:
+      Type: 'AWS::SNS::TopicPolicy'
+      Properties:
+        Topics:
+          - !Ref SNSTopic
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Principal:
+                Service: 's3.amazonaws.com'
+              Action: 'sns:Publish'
+              Resource: !Ref SNSTopic
+              Condition:
+                StringEquals:
+                  aws:SourceAccount: !Ref 'AWS::AccountId'
+
+
+    # SNS Subscription (Sends message to FastAPI)
+    SNSSubscription:
+      Type: 'AWS::SNS::Subscription'
+      Properties:
+        TopicArn: !Ref SNSTopic
+        Protocol: http
+        Endpoint: !Sub 'http://${InstanceEIP}:8000/notify'
+
+    
+    # IAM Role and Instance Profile, restricted to a single bucket
+    EC2InstanceRole:
+      Type: 'AWS::IAM::Role'
+      Properties:
+        AssumeRolePolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Principal: 
+                Service: [ec2.amazonaws.com]
+              Action: ['sts:AssumeRole']
+        Policies:
+          - PolicyName: 'SingleBucketAccess'
+            PolicyDocument:
+              Version: '2012-10-17'
+              Statement:
+                - Effect: Allow
+                  Action:
+                    - 's3:PutObject'
+                    - 's3:GetObject'
+                    - 's3:ListBucket'
+                    - 's3:DeleteObject'
+                  Resource:
+                    - !Sub 'arn:aws:s3:::${DataBucket}'
+                    - !Sub 'arn:aws:s3:::${DataBucket}/*'
+                  
+    EC2InstanceProfile:
+      Type: 'AWS::IAM::InstanceProfile'
+      Properties:
+        Roles: [!Ref EC2InstanceRole]
+    
+    InstanceSG:
+      Type: 'AWS::EC2::SecurityGroup'
+      Properties:
+        GroupDescription: 'Allow SSH and FastAPI'
+        SecurityGroupIngress:
+          - IpProtocol: tcp
+            FromPort: 22
+            ToPort: 22
+            CidrIp: !Ref MyIP
+          - IpProtocol: tcp
+            FromPort: 8000
+            ToPort: 8000
+            CidrIp: '0.0.0.0/0'
+
+    #EC2 instance 
+    AnomalyInstance:
+      Type: 'AWS::EC2::Instance'
+      Properties:
+        KeyName: !Ref KeyName
+        InstanceType: !Ref InstanceType
+        ImageId: !Ref LatestAmiId
+        IamInstanceProfile: !Ref EC2InstanceProfile
+        SecurityGroupIds: [!Ref InstanceSG]
+        BlockDeviceMappings:
+          - DeviceName: /dev/sda1
+            Ebs:
+              VolumeSize: 16
+        UserData:
+          Fn::Base64: !Sub |
+            #!/bin/bash
+            set -e
+            
+            # 1. Update and Install Dependencies
+            apt-get update -y
+            apt-get install -y git python3-pip python3-venv
+
+            # 2. Set Environment Variables (Persistently and for current session)
+            echo "BUCKET_NAME='${DataBucket}'" >> /etc/environment
+            export BUCKET_NAME='${DataBucket}'
+
+            # 3. clone and cd
+            mkdir -p /opt/anomaly-detection
+            git clone ${GitHubRepoUrl} /opt/anomaly-detection
+            cd /opt/anomaly-detection
+
+            # 4. Setup Python Virtual Environment
+            python3 -m venv venv
+            source venv/bin/activate
+            pip install --upgrade pip
+            pip install -r requirements.txt
+
+            # 5. Start FastAPI Service
+            # Running with nohup to ensure it stays up after script exits
+            nohup /opt/anomaly-detection/venv/bin/fastapi run app.py --port 8000 > /var/log/fastapi.log 2>&1 &    
+
+      #Elastic IP
+    InstanceEIP:
+      Type: 'AWS::EC2::EIP'
+      Properties:
+        InstanceId: !Ref AnomalyInstance
+
+
+Outputs:
+  S3Bucket:
+    Value: !Ref DataBucket
+  APIAddress:
+    Value: !Sub 'http://${InstanceEIP}:8000'
+  LogSyncPath:
+    Value: !Sub 's3://${DataBucket}/logs/anomaly_app.log'
