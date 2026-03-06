@@ -53,7 +53,7 @@ Resources:
     SNSTopic:
       Type: 'AWS::SNS::Topic'
       Properties:
-        TopicName: 'ds5220-dp01'
+        TopicName: 'ds5220-dp-1'
     
     # SNS Topic Policy which gives S3 has permission to send to SNS
     SNSTopicPolicy:
