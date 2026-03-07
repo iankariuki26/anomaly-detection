@@ -53,6 +53,7 @@ Resources:
     SNSTopic:
       Type: 'AWS::SNS::Topic'
       Properties:
+        #had to spin up a new cloudformation stack, and it wouldn't let me utilize the 'ds5022-dp1' topic name even though I had completely deleted the previous stack
         TopicName: 'dp1-ds5022'
     
     # SNS Topic Policy which gives S3 has permission to send to SNS
@@ -146,20 +147,20 @@ Resources:
             #!/bin/bash
             set -e
             
-            # 1. System Setup
+            # first System Setup by installing dependencies
             apt-get update -y
             apt-get install -y git python3-pip python3-venv
 
-            # 2. Directory & Permissions
+            #  Directory & Permissions, changing owner from root and into ubuntu
             mkdir -p /opt/anomaly-detection
             chown ubuntu:ubuntu /opt/anomaly-detection
             
-            # 3. Environment Variables
+            #  Environment Variables for my s3_bucket
             echo "BUCKET_NAME=${DataBucket}" >> /etc/environment
             # Export for this session
             export BUCKET_NAME=${DataBucket}
 
-            # 4. Clone and Build (as ubuntu user to avoid root locks)
+            #  Cloning and Building my repository as an ubuntu user to avoid root locking me out
             sudo -u ubuntu -i bash <<EOF
             cd /opt/anomaly-detection
             git clone ${GitHubRepoUrl} .
@@ -167,7 +168,7 @@ Resources:
             ./venv/bin/pip install --upgrade pip
             ./venv/bin/pip install -r requirements.txt
             
-            # 5. Start Service (Redirecting to a file ubuntu can write to)
+            #  Start Service (Redirecting to a file ubuntu can write to)
             export BUCKET_NAME=${DataBucket}
             nohup ./venv/bin/fastapi run app.py --port 8000 > anomaly_app.log 2>&1 & EOF
 

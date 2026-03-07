@@ -1,0 +1,411 @@
+
+   FastAPI   Starting production server 🚀
+ 
+             Searching for package file structure from directories with         
+             __init__.py files                                                  
+             Importing from /opt/anomaly-detection
+ 
+    module   🐍 app.py
+ 
+      code   Importing the FastAPI app object from the module with the following
+             code:                                                              
+ 
+             from app import app
+ 
+       app   Using import string: app:app
+ 
+    server   Server started at http://0.0.0.0:8000
+    server   Documentation at http://0.0.0.0:8000/docs
+ 
+             Logs:
+ 
+      INFO   Started server process [2766]
+2026-03-06 18:15:38,628 - uvicorn.error - INFO - Started server process [2766]
+      INFO   Waiting for application startup.
+2026-03-06 18:15:38,628 - uvicorn.error - INFO - Waiting for application startup.
+      INFO   Application startup complete.
+2026-03-06 18:15:38,629 - uvicorn.error - INFO - Application startup complete.
+      INFO   Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-03-06 18:15:38,631 - uvicorn.error - INFO - Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+      INFO   206.248.255.162:63973 - "GET /health HTTP/1.1" 200
+      INFO   206.248.255.162:63973 - "GET /favicon.ico HTTP/1.1" 404
+2026-03-06 18:15:46,379 - app - INFO - SNS Subscription Confirmation: Visited https://sns.us-east-1.amazonaws.com/?Action=ConfirmSubscription&TopicArn=arn:aws:sns:us-east-1:971422675207:dp1-ds5022&Token=2336412f37fb687f5d51e6e2425929f52e8e353134fd014825ef8bd60c4dfb5f3be288c01c9d3d07dbe47ca9527bc2a420d2a1a67cd723692ecce2e85da59071f9efec37bbefdbe2ad64a9d82f9ac6fe36002c61219dc908b8d3d66d5622ec02a611ffaa16ab9bc633cfc26fbb600c2f
+      INFO   15.221.163.1:37333 - "POST /notify HTTP/1.1" 200
+2026-03-06 18:19:09,260 - app - INFO - SNS Notification: New file detected: raw/sensors_20260306T231908.csv
+      INFO   15.221.161.80:16269 - "POST /notify HTTP/1.1" 200
+2026-03-06 18:19:09,261 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260306T231908.csv
+2026-03-06 18:19:09,787 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 18:20:09,817 - app - INFO - SNS Notification: New file detected: raw/sensors_20260306T232008.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 5/100 anomalies flagged
+      INFO   15.221.161.69:31855 - "POST /notify HTTP/1.1" 200
+2026-03-06 18:20:09,819 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260306T232008.csv
+2026-03-06 18:20:10,254 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 18:21:10,273 - app - INFO - SNS Notification: New file detected: raw/sensors_20260306T232108.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 6/100 anomalies flagged
+      INFO   15.221.161.71:36822 - "POST /notify HTTP/1.1" 200
+2026-03-06 18:21:10,274 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260306T232108.csv
+2026-03-06 18:21:10,698 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 18:22:09,854 - app - INFO - SNS Notification: New file detected: raw/sensors_20260306T232209.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 5/100 anomalies flagged
+      INFO   15.221.161.169:36462 - "POST /notify HTTP/1.1" 200
+2026-03-06 18:22:09,856 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260306T232209.csv
+2026-03-06 18:22:10,283 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 18:23:10,443 - app - INFO - SNS Notification: New file detected: raw/sensors_20260306T232309.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 5/100 anomalies flagged
+      INFO   15.221.161.42:3308 - "POST /notify HTTP/1.1" 200
+2026-03-06 18:23:10,445 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260306T232309.csv
+2026-03-06 18:23:10,851 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 18:24:10,053 - app - INFO - SNS Notification: New file detected: raw/sensors_20260306T232409.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 6/100 anomalies flagged
+      INFO   15.221.161.84:61718 - "POST /notify HTTP/1.1" 200
+2026-03-06 18:24:10,055 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260306T232409.csv
+2026-03-06 18:24:10,478 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 18:25:10,632 - app - INFO - SNS Notification: New file detected: raw/sensors_20260306T232509.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 6/100 anomalies flagged
+      INFO   15.221.161.42:27448 - "POST /notify HTTP/1.1" 200
+2026-03-06 18:25:10,633 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260306T232509.csv
+2026-03-06 18:25:11,063 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 18:26:10,319 - app - INFO - SNS Notification: New file detected: raw/sensors_20260306T232609.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 5/100 anomalies flagged
+      INFO   15.221.161.19:36573 - "POST /notify HTTP/1.1" 200
+2026-03-06 18:26:10,321 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260306T232609.csv
+2026-03-06 18:26:10,727 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 18:27:11,020 - app - INFO - SNS Notification: New file detected: raw/sensors_20260306T232709.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 5/100 anomalies flagged
+      INFO   15.221.161.88:49641 - "POST /notify HTTP/1.1" 200
+2026-03-06 18:27:11,021 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260306T232709.csv
+2026-03-06 18:27:11,442 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 18:28:11,325 - app - INFO - SNS Notification: New file detected: raw/sensors_20260306T232810.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 5/100 anomalies flagged
+      INFO   15.221.161.80:8068 - "POST /notify HTTP/1.1" 200
+2026-03-06 18:28:11,326 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260306T232810.csv
+2026-03-06 18:28:11,787 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 18:29:11,177 - app - INFO - SNS Notification: New file detected: raw/sensors_20260306T232910.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 6/100 anomalies flagged
+      INFO   15.221.161.133:27151 - "POST /notify HTTP/1.1" 200
+2026-03-06 18:29:11,178 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260306T232910.csv
+2026-03-06 18:29:11,637 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 18:30:11,697 - app - INFO - SNS Notification: New file detected: raw/sensors_20260306T233010.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 5/100 anomalies flagged
+      INFO   15.221.161.132:37646 - "POST /notify HTTP/1.1" 200
+2026-03-06 18:30:11,699 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260306T233010.csv
+2026-03-06 18:30:12,126 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 18:31:11,348 - app - INFO - SNS Notification: New file detected: raw/sensors_20260306T233110.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 5/100 anomalies flagged
+      INFO   15.221.161.20:42060 - "POST /notify HTTP/1.1" 200
+2026-03-06 18:31:11,349 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260306T233110.csv
+2026-03-06 18:31:11,789 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 18:32:11,972 - app - INFO - SNS Notification: New file detected: raw/sensors_20260306T233210.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 5/100 anomalies flagged
+      INFO   15.221.161.76:44004 - "POST /notify HTTP/1.1" 200
+2026-03-06 18:32:11,973 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260306T233210.csv
+2026-03-06 18:32:12,428 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 18:33:11,753 - app - INFO - SNS Notification: New file detected: raw/sensors_20260306T233310.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 7/100 anomalies flagged
+      INFO   15.221.160.29:2688 - "POST /notify HTTP/1.1" 200
+2026-03-06 18:33:11,755 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260306T233310.csv
+2026-03-06 18:33:12,219 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 18:34:12,330 - app - INFO - SNS Notification: New file detected: raw/sensors_20260306T233410.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 6/100 anomalies flagged
+      INFO   15.221.161.65:26161 - "POST /notify HTTP/1.1" 200
+2026-03-06 18:34:12,332 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260306T233410.csv
+2026-03-06 18:34:12,762 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 18:35:11,967 - app - INFO - SNS Notification: New file detected: raw/sensors_20260306T233511.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 6/100 anomalies flagged
+      INFO   15.221.161.143:22351 - "POST /notify HTTP/1.1" 200
+2026-03-06 18:35:11,968 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260306T233511.csv
+2026-03-06 18:35:12,376 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 18:36:12,575 - app - INFO - SNS Notification: New file detected: raw/sensors_20260306T233611.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 5/100 anomalies flagged
+      INFO   15.221.161.22:14919 - "POST /notify HTTP/1.1" 200
+2026-03-06 18:36:12,576 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260306T233611.csv
+2026-03-06 18:36:13,069 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 18:37:12,282 - app - INFO - SNS Notification: New file detected: raw/sensors_20260306T233711.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 6/100 anomalies flagged
+      INFO   15.221.163.126:33245 - "POST /notify HTTP/1.1" 200
+2026-03-06 18:37:12,284 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260306T233711.csv
+2026-03-06 18:37:12,688 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 18:38:12,752 - app - INFO - SNS Notification: New file detected: raw/sensors_20260306T233811.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 5/100 anomalies flagged
+      INFO   15.221.160.1:15693 - "POST /notify HTTP/1.1" 200
+2026-03-06 18:38:12,753 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260306T233811.csv
+2026-03-06 18:38:13,153 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 18:39:12,683 - app - INFO - SNS Notification: New file detected: raw/sensors_20260306T233911.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 5/100 anomalies flagged
+      INFO   15.221.161.119:60308 - "POST /notify HTTP/1.1" 200
+2026-03-06 18:39:12,685 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260306T233911.csv
+2026-03-06 18:39:13,115 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 18:40:13,367 - app - INFO - SNS Notification: New file detected: raw/sensors_20260306T234011.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 7/100 anomalies flagged
+      INFO   15.221.161.145:60818 - "POST /notify HTTP/1.1" 200
+2026-03-06 18:40:13,369 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260306T234011.csv
+2026-03-06 18:40:13,809 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 18:41:13,221 - app - INFO - SNS Notification: New file detected: raw/sensors_20260306T234112.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 6/100 anomalies flagged
+      INFO   15.221.161.56:26664 - "POST /notify HTTP/1.1" 200
+2026-03-06 18:41:13,223 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260306T234112.csv
+2026-03-06 18:41:13,691 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 18:42:13,092 - app - INFO - SNS Notification: New file detected: raw/sensors_20260306T234212.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 5/100 anomalies flagged
+      INFO   15.221.161.102:12268 - "POST /notify HTTP/1.1" 200
+2026-03-06 18:42:13,093 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260306T234212.csv
+2026-03-06 18:42:13,514 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 18:43:13,594 - app - INFO - SNS Notification: New file detected: raw/sensors_20260306T234312.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 5/100 anomalies flagged
+      INFO   15.221.160.14:53991 - "POST /notify HTTP/1.1" 200
+2026-03-06 18:43:13,596 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260306T234312.csv
+2026-03-06 18:43:14,030 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 18:44:13,628 - app - INFO - SNS Notification: New file detected: raw/sensors_20260306T234412.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 5/100 anomalies flagged
+      INFO   15.221.161.112:26165 - "POST /notify HTTP/1.1" 200
+2026-03-06 18:44:13,629 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260306T234412.csv
+2026-03-06 18:44:14,151 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 18:45:14,011 - app - INFO - SNS Notification: New file detected: raw/sensors_20260306T234512.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 5/100 anomalies flagged
+      INFO   15.221.161.51:52756 - "POST /notify HTTP/1.1" 200
+2026-03-06 18:45:14,012 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260306T234512.csv
+2026-03-06 18:45:14,455 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 18:46:13,836 - app - INFO - SNS Notification: New file detected: raw/sensors_20260306T234612.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 5/100 anomalies flagged
+      INFO   15.221.5.255:29809 - "POST /notify HTTP/1.1" 200
+2026-03-06 18:46:13,837 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260306T234612.csv
+2026-03-06 18:46:14,301 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 18:47:14,577 - app - INFO - SNS Notification: New file detected: raw/sensors_20260306T234713.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 5/100 anomalies flagged
+      INFO   15.221.161.54:43855 - "POST /notify HTTP/1.1" 200
+2026-03-06 18:47:14,578 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260306T234713.csv
+2026-03-06 18:47:14,982 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 18:48:14,601 - app - INFO - SNS Notification: New file detected: raw/sensors_20260306T234813.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 6/100 anomalies flagged
+      INFO   15.221.161.167:56249 - "POST /notify HTTP/1.1" 200
+2026-03-06 18:48:14,602 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260306T234813.csv
+2026-03-06 18:48:15,049 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 18:49:14,095 - app - INFO - SNS Notification: New file detected: raw/sensors_20260306T234913.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 5/100 anomalies flagged
+      INFO   15.221.160.22:44342 - "POST /notify HTTP/1.1" 200
+2026-03-06 18:49:14,097 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260306T234913.csv
+2026-03-06 18:49:14,532 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 18:50:14,643 - app - INFO - SNS Notification: New file detected: raw/sensors_20260306T235013.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 6/100 anomalies flagged
+      INFO   15.221.161.120:7049 - "POST /notify HTTP/1.1" 200
+2026-03-06 18:50:14,644 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260306T235013.csv
+2026-03-06 18:50:15,126 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 18:51:14,422 - app - INFO - SNS Notification: New file detected: raw/sensors_20260306T235113.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 6/100 anomalies flagged
+      INFO   15.221.5.251:17872 - "POST /notify HTTP/1.1" 200
+2026-03-06 18:51:14,423 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260306T235113.csv
+2026-03-06 18:51:14,960 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 18:52:14,994 - app - INFO - SNS Notification: New file detected: raw/sensors_20260306T235213.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 5/100 anomalies flagged
+      INFO   15.221.161.145:7356 - "POST /notify HTTP/1.1" 200
+2026-03-06 18:52:14,995 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260306T235213.csv
+2026-03-06 18:52:15,402 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 18:53:15,385 - app - INFO - SNS Notification: New file detected: raw/sensors_20260306T235314.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 6/100 anomalies flagged
+      INFO   15.221.161.54:28169 - "POST /notify HTTP/1.1" 200
+2026-03-06 18:53:15,386 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260306T235314.csv
+2026-03-06 18:53:16,065 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 18:54:15,264 - app - INFO - SNS Notification: New file detected: raw/sensors_20260306T235414.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 6/100 anomalies flagged
+      INFO   15.221.161.85:50163 - "POST /notify HTTP/1.1" 200
+2026-03-06 18:54:15,265 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260306T235414.csv
+2026-03-06 18:54:15,669 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 18:55:15,775 - app - INFO - SNS Notification: New file detected: raw/sensors_20260306T235514.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 7/100 anomalies flagged
+      INFO   15.221.163.126:26561 - "POST /notify HTTP/1.1" 200
+2026-03-06 18:55:15,776 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260306T235514.csv
+2026-03-06 18:55:16,185 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 18:56:15,642 - app - INFO - SNS Notification: New file detected: raw/sensors_20260306T235614.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 5/100 anomalies flagged
+      INFO   15.221.161.32:18863 - "POST /notify HTTP/1.1" 200
+2026-03-06 18:56:15,644 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260306T235614.csv
+2026-03-06 18:56:16,054 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 18:57:16,172 - app - INFO - SNS Notification: New file detected: raw/sensors_20260306T235715.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 5/100 anomalies flagged
+      INFO   15.221.161.27:60268 - "POST /notify HTTP/1.1" 200
+2026-03-06 18:57:16,173 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260306T235715.csv
+2026-03-06 18:57:16,619 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 18:58:16,520 - app - INFO - SNS Notification: New file detected: raw/sensors_20260306T235815.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 6/100 anomalies flagged
+      INFO   15.221.161.77:18769 - "POST /notify HTTP/1.1" 200
+2026-03-06 18:58:16,521 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260306T235815.csv
+2026-03-06 18:58:16,982 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 18:59:16,433 - app - INFO - SNS Notification: New file detected: raw/sensors_20260306T235915.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 5/100 anomalies flagged
+      INFO   15.221.161.139:8328 - "POST /notify HTTP/1.1" 200
+2026-03-06 18:59:16,434 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260306T235915.csv
+2026-03-06 18:59:16,876 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 19:00:17,025 - app - INFO - SNS Notification: New file detected: raw/sensors_20260307T000015.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 7/100 anomalies flagged
+      INFO   15.221.161.167:7961 - "POST /notify HTTP/1.1" 200
+2026-03-06 19:00:17,026 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260307T000015.csv
+2026-03-06 19:00:17,498 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 19:01:16,651 - app - INFO - SNS Notification: New file detected: raw/sensors_20260307T000115.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 6/100 anomalies flagged
+      INFO   15.221.161.138:25683 - "POST /notify HTTP/1.1" 200
+2026-03-06 19:01:16,653 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260307T000115.csv
+2026-03-06 19:01:17,153 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 19:02:17,097 - app - INFO - SNS Notification: New file detected: raw/sensors_20260307T000216.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 6/100 anomalies flagged
+      INFO   15.221.161.35:61089 - "POST /notify HTTP/1.1" 200
+2026-03-06 19:02:17,098 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260307T000216.csv
+2026-03-06 19:02:17,509 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 19:03:17,481 - app - INFO - SNS Notification: New file detected: raw/sensors_20260307T000316.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 5/100 anomalies flagged
+      INFO   15.221.160.21:18281 - "POST /notify HTTP/1.1" 200
+2026-03-06 19:03:17,482 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260307T000316.csv
+2026-03-06 19:03:17,912 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 19:04:17,104 - app - INFO - SNS Notification: New file detected: raw/sensors_20260307T000416.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 5/100 anomalies flagged
+      INFO   15.221.160.27:33403 - "POST /notify HTTP/1.1" 200
+2026-03-06 19:04:17,105 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260307T000416.csv
+2026-03-06 19:04:17,551 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 19:05:17,645 - app - INFO - SNS Notification: New file detected: raw/sensors_20260307T000516.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 5/100 anomalies flagged
+      INFO   15.221.161.142:35333 - "POST /notify HTTP/1.1" 200
+2026-03-06 19:05:17,646 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260307T000516.csv
+2026-03-06 19:05:18,047 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 19:06:18,088 - app - INFO - SNS Notification: New file detected: raw/sensors_20260307T000616.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 6/100 anomalies flagged
+      INFO   15.221.160.27:53619 - "POST /notify HTTP/1.1" 200
+2026-03-06 19:06:18,089 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260307T000616.csv
+2026-03-06 19:06:18,536 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 19:07:18,646 - app - INFO - SNS Notification: New file detected: raw/sensors_20260307T000717.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 6/100 anomalies flagged
+      INFO   15.221.160.19:6645 - "POST /notify HTTP/1.1" 200
+2026-03-06 19:07:18,648 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260307T000717.csv
+2026-03-06 19:07:19,108 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 19:08:19,024 - app - INFO - SNS Notification: New file detected: raw/sensors_20260307T000817.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 5/100 anomalies flagged
+      INFO   15.221.161.24:59750 - "POST /notify HTTP/1.1" 200
+2026-03-06 19:08:19,025 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260307T000817.csv
+2026-03-06 19:08:19,493 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 19:09:18,736 - app - INFO - SNS Notification: New file detected: raw/sensors_20260307T000917.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 7/100 anomalies flagged
+      INFO   15.221.161.123:57600 - "POST /notify HTTP/1.1" 200
+2026-03-06 19:09:18,737 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260307T000917.csv
+2026-03-06 19:09:19,216 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 19:10:19,360 - app - INFO - SNS Notification: New file detected: raw/sensors_20260307T001018.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 5/100 anomalies flagged
+      INFO   15.221.160.40:12618 - "POST /notify HTTP/1.1" 200
+2026-03-06 19:10:19,361 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260307T001018.csv
+2026-03-06 19:10:19,887 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 19:11:19,684 - app - INFO - SNS Notification: New file detected: raw/sensors_20260307T001118.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 5/100 anomalies flagged
+      INFO   15.221.161.130:17201 - "POST /notify HTTP/1.1" 200
+2026-03-06 19:11:19,686 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260307T001118.csv
+2026-03-06 19:11:20,221 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 19:12:19,560 - app - INFO - SNS Notification: New file detected: raw/sensors_20260307T001218.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 5/100 anomalies flagged
+      INFO   15.221.161.73:37500 - "POST /notify HTTP/1.1" 200
+2026-03-06 19:12:19,562 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260307T001218.csv
+2026-03-06 19:12:20,002 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 19:13:19,825 - app - INFO - SNS Notification: New file detected: raw/sensors_20260307T001318.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 5/100 anomalies flagged
+      INFO   15.221.161.83:54297 - "POST /notify HTTP/1.1" 200
+2026-03-06 19:13:19,826 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260307T001318.csv
+2026-03-06 19:13:20,284 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 19:14:19,374 - app - INFO - SNS Notification: New file detected: raw/sensors_20260307T001418.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 6/100 anomalies flagged
+      INFO   15.221.160.3:48784 - "POST /notify HTTP/1.1" 200
+2026-03-06 19:14:19,376 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260307T001418.csv
+2026-03-06 19:14:19,833 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 19:15:19,933 - app - INFO - SNS Notification: New file detected: raw/sensors_20260307T001518.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 6/100 anomalies flagged
+      INFO   15.221.161.167:9347 - "POST /notify HTTP/1.1" 200
+2026-03-06 19:15:19,934 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260307T001518.csv
+2026-03-06 19:15:20,578 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 19:16:20,430 - app - INFO - SNS Notification: New file detected: raw/sensors_20260307T001619.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 5/100 anomalies flagged
+      INFO   15.221.161.138:48987 - "POST /notify HTTP/1.1" 200
+2026-03-06 19:16:20,432 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260307T001619.csv
+2026-03-06 19:16:20,845 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 19:17:20,252 - app - INFO - SNS Notification: New file detected: raw/sensors_20260307T001719.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 6/100 anomalies flagged
+      INFO   15.221.161.136:57370 - "POST /notify HTTP/1.1" 200
+2026-03-06 19:17:20,254 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260307T001719.csv
+2026-03-06 19:17:20,664 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 19:18:20,734 - app - INFO - SNS Notification: New file detected: raw/sensors_20260307T001819.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 6/100 anomalies flagged
+      INFO   15.221.160.17:15028 - "POST /notify HTTP/1.1" 200
+2026-03-06 19:18:20,735 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260307T001819.csv
+2026-03-06 19:18:21,231 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 19:19:21,043 - app - INFO - SNS Notification: New file detected: raw/sensors_20260307T001919.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 5/100 anomalies flagged
+      INFO   15.221.161.145:30162 - "POST /notify HTTP/1.1" 200
+2026-03-06 19:19:21,044 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260307T001919.csv
+2026-03-06 19:19:21,540 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 19:20:20,742 - app - INFO - SNS Notification: New file detected: raw/sensors_20260307T002019.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 6/100 anomalies flagged
+      INFO   15.221.161.22:64343 - "POST /notify HTTP/1.1" 200
+2026-03-06 19:20:20,743 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260307T002019.csv
+2026-03-06 19:20:21,184 - processor - INFO - Successfully synced log file to S3.
+2026-03-06 19:21:18,310 - app - INFO - Query: Fetching anomaly summary.
+2026-03-06 19:21:21,186 - app - INFO - SNS Notification: New file detected: raw/sensors_20260307T002120.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+  Done: 6/100 anomalies flagged
+      INFO   15.221.163.126:4077 - "POST /notify HTTP/1.1" 200
+2026-03-06 19:21:21,187 - processor - INFO - Processing: s3://dp1-ds5022-databucket-9ihqydqdonac/raw/sensors_20260307T002120.csv
+  Loaded 100 rows, columns: ['timestamp', 'temperature', 'humidity', 'pressure', 'wind_speed']
+      INFO   206.248.255.162:64528 - "GET /anomalies/summary HTTP/1.1" 200
